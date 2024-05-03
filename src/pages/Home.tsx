@@ -1,20 +1,18 @@
-import { IPlant } from "../interfaces/plant.interface"
-import { useFilter } from "../hooks/useFilter"
-import { useFetchItems } from "../hooks/useFetchItems"
-import Item from "../components/Item"
+import { IPlant } from '../interfaces/plant.interface';
+import { usePlantFilter, useFetchItems } from '../hooks';
+import Item from '../components/Item';
+import { URL } from '../assets/URL';
 
 function Home() {
-    const APIUrl = 'https://dulces-petalos.herokuapp.com/api/product/'
-    const { items, errorFetch, loading } = useFetchItems(APIUrl)
-    const { filterItems, filteredItems } = useFilter(items)
+    const { items, errorFetch, loading } = useFetchItems(URL);
+    const { filterItems, filteredItems } = usePlantFilter(items);
 
     return (
         <>
-            <div id="item-container">
-                <div id="title-search">
-                    <h1 id="title">Catálogo</h1>
-                    <div className="sort">
-
+            <div id='item-container'>
+                <div id='title-search'>
+                    <h1 id='title'>Catálogo</h1>
+                    <div className='sort'>
                         {/* <div id="sort-up">
                             <i className="fa-solid fa-arrow-down-1-9"></i>
                             <input type="radio" id="filter1" name="filter" value="option1" className="filter" />
@@ -25,23 +23,25 @@ function Home() {
                             <input type="radio" id="filter2" name="filter" value="option2" className="filter" />
                         </div> */}
 
-                        <input id="search" type="text" placeholder="Búsqueda" onChange={filterItems} />
+                        <input
+                            id='search'
+                            type='text'
+                            placeholder='Búsqueda'
+                            onChange={filterItems}
+                        />
                     </div>
                 </div>
 
-                {!errorFetch && (
-                    !loading ? (
-
-                        <div id="item-grid">
+                {!errorFetch &&
+                    (!loading ? (
+                        <div id='item-grid'>
                             {filteredItems.map((p: IPlant) => (
                                 <Item plant={p} key={p.id} />
-                            ))
-                            }
+                            ))}
                         </div>
                     ) : (
-                        <span className="loader"></span>
+                        <span className='loader'></span>
                     ))}
-
 
                 {errorFetch && (
                     <div>
@@ -50,7 +50,7 @@ function Home() {
                 )}
             </div>
         </>
-    )
+    );
 }
 
-export default Home
+export default Home;

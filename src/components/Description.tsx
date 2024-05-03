@@ -1,10 +1,10 @@
-import { plantInfo } from "../interfaces/plant.interface"
+import { plantInfo } from '../interfaces/plant.interface';
 
 export default function Description({ plant }: plantInfo) {
     return (
         <>
-            <div id="detail-description">
-                <table id="table">
+            <div id='detail-description'>
+                <table id='table'>
                     <tbody>
                         <tr>
                             <td>Nombre científico</td>
@@ -24,12 +24,13 @@ export default function Description({ plant }: plantInfo) {
                         </tr>
                         <tr>
                             <td>Tipo de fertilizante</td>
-                            <td>{plant.fertilizerType === "nitrogen" ?
-                                'Nitrogenado' : 'Fosforado'}</td>
+                            <td>
+                                {plant.fertilizerType === 'nitrogen' ? 'Nitrogenado' : 'Fosforado'}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </>
-    )
+    );
 }
